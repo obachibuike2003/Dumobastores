@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dumoba Stores | Online Shopping in Nigeria</title>
+  <meta name="description" content="Shop phones, fashion, electronics, kitchen, beauty, groceries, baby and sports products at Dumoba Stores. Order on WhatsApp, delivery across Nigeria.">
+  <meta name="theme-color" content="#1449e6">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/logo-icon.png">
+  <meta property="og:image" content="assets/logo-full.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Loading screen styles are inline so the logo shows instantly on refresh -->
+  <style>
+    .loader { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; background: #fff; transition: opacity .45s ease, visibility .45s ease; }
+    .loader.done { opacity: 0; visibility: hidden; }
+    .loader__in { display: grid; justify-items: center; gap: 18px; }
+    .loader__logo { width: 96px; height: 96px; border-radius: 24px; box-shadow: 0 14px 34px rgba(20, 73, 230, .3); animation: loader-pulse 1.2s ease-in-out infinite; }
+    .loader__name { font: 800 22px/1 "Inter", system-ui, sans-serif; letter-spacing: -.03em; color: #0a1f5c; }
+    .loader__name b { font-weight: 500; color: #1449e6; }
+    .loader__bar { width: 120px; height: 4px; border-radius: 2px; background: #e8efff; overflow: hidden; }
+    .loader__bar i { display: block; width: 40%; height: 100%; border-radius: 2px; background: #1449e6; animation: loader-slide 1s ease-in-out infinite; }
+    @keyframes loader-pulse { 50% { transform: scale(1.08); } }
+    @keyframes loader-slide { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+    @media (prefers-reduced-motion: reduce) { .loader__logo, .loader__bar i { animation: none; } }
+  </style>
+</head>
+<body>
+
+  <!-- Loading screen: shows the logo while the page loads or refreshes -->
+  <div class="loader" id="loader" role="status" aria-label="Loading Dumoba Stores">
+    <div class="loader__in">
+      <img class="loader__logo" src="assets/logo-icon.png" alt="" width="96" height="96">
+      <p class="loader__name">Dumoba <b>Stores</b></p>
+      <div class="loader__bar"><i></i></div>
+    </div>
+  </div>
+
+  <!-- Top ticker (scrolling messages) -->
+  <div class="ticker" aria-label="Store news">
+    <div class="ticker__track" id="ticker"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="wrap header__in">
+      <button class="icon-btn menu-btn" type="button" id="menu-btn" aria-label="Open categories menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <a class="logo" href="#/" aria-label="Dumoba Stores home">
+        <span class="logo__mark" data-logo>D</span>
+        <span class="logo__words"><span class="logo__text">Dumoba<b>Stores</b></span><small class="logo__tag" data-tagline></small></span>
+      </a>
+      <form class="search" id="search-form" role="search">
+        <label class="visually-hidden" for="q">Search products, brands and categories</label>
+        <svg class="search__icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="q" type="search" placeholder="Search phones, shoes, rice, kettles…" autocomplete="off">
+        <button class="search__btn" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="suggest" id="suggest" role="listbox" hidden></ul>
+      </form>
+      <nav class="header__actions" aria-label="Account and cart">
+        <a class="hact" href="#/help">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+          <span>Help</span>
+        </a>
+        <a class="hact" id="wa-head" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          <span>WhatsApp</span>
+        </a>
+        <a class="hact" href="#/wishlist" aria-label="Wishlist">
+          <span class="cart-ico">
+            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+            <b class="cart-count" id="wish-count" hidden>0</b>
+          </span>
+          <span>Saved</span>
+        </a>
+        <a class="hact hact--cart" href="#/cart" aria-label="Cart">
+          <span class="cart-ico">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h9.2a1 1 0 0 0 1-.8L20 8H6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg>
+            <b class="cart-count" id="cart-count">0</b>
+          </span>
+          <span>Cart</span>
+        </a>
+      </nav>
+    </div>
+    <nav class="catbar" aria-label="Categories">
+      <div class="wrap catbar__in" id="catbar"></div>
+    </nav>
+  </header>
+
+  <!-- Mobile category drawer -->
+  <div class="drawer" id="drawer" hidden>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Categories">
+      <div class="drawer__head">
+        <span class="logo__text">Dumoba<b>Stores</b></span>
+        <button class="icon-btn" type="button" data-close-drawer aria-label="Close menu">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <p class="drawer__label">Categories</p>
+      <ul class="drawer__list" id="drawer-list"></ul>
+    </div>
+    <button class="drawer__scrim" type="button" data-close-drawer aria-label="Close menu"></button>
+  </div>
+
+  <main id="app" class="wrap" tabindex="-1"></main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__news">
+      <div class="wrap footer__news-in">
+        <div class="footer__brand">
+          <span class="logo__mark logo__mark--light" data-logo>D</span>
+          <div>
+            <p class="footer__brand-name">Dumoba Stores</p>
+            <p data-tagline>Everything for the home, delivered across Nigeria.</p>
+          </div>
+        </div>
+        <form class="news" id="news-form">
+          <label for="news-email">New deals in your inbox</label>
+          <div class="news__row">
+            <input id="news-email" type="email" placeholder="Enter your email address" required>
+            <button class="btn btn--light" type="submit">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="wrap footer__cols">
+      <div>
+        <h3>Need help?</h3>
+        <ul>
+          <li><a href="#/orders">My orders</a></li>
+          <li><a href="#/help">Help centre</a></li>
+          <li><a href="#/help">How to order</a></li>
+          <li><a href="#/help">Delivery and fees</a></li>
+          <li><a href="#/help">Returns and refunds</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <ul id="footer-cats"></ul>
+      </div>
+      <div>
+        <h3>Contact us</h3>
+        <ul>
+          <li><a id="foot-wa" href="#" target="_blank" rel="noopener">Chat on WhatsApp</a></li>
+          <li><a id="foot-phone" href="#"></a></li>
+          <li><a id="foot-email" href="#"></a></li>
+          <li id="foot-addr">Awka, Anambra State</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Why Dumoba</h3>
+        <ul class="footer__why">
+          <li>Every item checked before it ships</li>
+          <li>Delivery to all 36 states</li>
+          <li>Easy 7-day returns</li>
+          <li>Real people on WhatsApp</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__base">
+      <div class="wrap footer__base-in">
+        <p>© <span id="year"></span> Dumoba Stores. All rights reserved.</p>
+        <p class="footer__credits">Sample product photos from Wikimedia Commons, Openverse and rawpixel under Creative Commons licences. <a href="CREDITS.md">Picture credits</a>.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a class="wa-float" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8a3.2 3.2 0 0 0 2.1-1.5 2.6 2.6 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.4z"/></svg>
+  </a>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

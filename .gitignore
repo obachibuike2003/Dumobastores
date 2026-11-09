@@ -1,0 +1,10 @@
+# design-check screenshots (not part of the website)
+.taste-skill/
+
+# backups made by the admin page
+js/products.backup.js
+
+# system files
+Thumbs.db
+desktop.ini
+.DS_Store
